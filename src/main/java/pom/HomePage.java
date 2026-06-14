@@ -19,24 +19,24 @@ public class HomePage {
         this.driver = driver;
     }
 
-    private final By ProfileButton = By.xpath("//a[@href='/account']");
-    private final By LoginButton = By.xpath(".//button[text()='Войти в аккаунт']");
+    private final By profileButton = By.xpath("//a[@href='/account']");
+    private final By loginButton = By.xpath(".//button[text()='Войти в аккаунт']");
     private final By constructorHeader = By.xpath(".//h1[text()='Соберите бургер']");
-    private final By BunsList = By.xpath("//span[text()='Булки']/parent::div");
-    private final By SaucesList = By.xpath("//span[text()='Соусы']/parent::div");
-    private final By FillingsList = By.xpath("//span[text()='Начинки']/parent::div");
+    private final By bunsList = By.xpath("//span[text()='Булки']/parent::div");
+    private final By saucesList = By.xpath("//span[text()='Соусы']/parent::div");
+    private final By fillingsList = By.xpath("//span[text()='Начинки']/parent::div");
 
     @Step("Клик по кнопке 'Войти в аккаунт' из главной страницы")
     public void clickLoginButton() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(LoginButton))
+                .until(ExpectedConditions.elementToBeClickable(loginButton))
                 .click();
     }
 
     @Step("Клик по кнопке 'Личный кабинет' из главной страницы")
     public void clickProfileButton() {
         new WebDriverWait(driver, Duration.ofSeconds(5))
-                .until(ExpectedConditions.elementToBeClickable(ProfileButton))
+                .until(ExpectedConditions.elementToBeClickable(profileButton))
                 .click();
     }
 
@@ -64,12 +64,11 @@ public class HomePage {
 
     private By getSectionLocator(BurgerIngredients section) {
         switch (section) {
-            case BUNS: return BunsList;
-            case SAUCES: return SaucesList;
-            case FILLINGS: return FillingsList;
+            case BUNS: return bunsList;
+            case SAUCES: return saucesList;
+            case FILLINGS: return fillingsList;
             default:
                 throw new IllegalArgumentException("Раздел конструктора неизвестен: " + section);
         }
     }
-
 }
